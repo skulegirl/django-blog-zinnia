@@ -330,7 +330,7 @@ class FeedsTestCase(TestCase):
                          '/comments/cr/%i/%i/#c%i' %
                          (self.entry_ct_id, entry.pk, comments[0].pk))
         self.assertEqual(feed.item_author_name(comments[0]),
-                         self.author.get_full_name())
+                         self.author.get_username())
         self.assertEqual(feed.item_author_email(comments[0]),
                          'admin@example.com')
         self.assertEqual(feed.item_author_link(comments[0]), '')

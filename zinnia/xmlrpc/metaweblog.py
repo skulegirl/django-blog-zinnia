@@ -63,17 +63,8 @@ def user_structure(user, site):
     """
     An user structure.
     """
-    full_name = user.get_full_name().split()
-    first_name = full_name[0]
-    try:
-        last_name = full_name[1]
-    except IndexError:
-        last_name = ''
     return {'userid': user.pk,
-            'email': user.email,
             'nickname': user.get_username(),
-            'lastname': last_name,
-            'firstname': first_name,
             'url': '%s://%s%s' % (
                 PROTOCOL, site.domain,
                 user.get_absolute_url())}
@@ -85,8 +76,7 @@ def author_structure(user):
     """
     return {'user_id': user.pk,
             'user_login': user.get_username(),
-            'display_name': user.__str__(),
-            'user_email': user.email}
+            'display_name': user.__str__()}
 
 
 def category_structure(category, site):

@@ -1,6 +1,7 @@
 """Apps for Zinnia"""
 from django.apps import AppConfig
 from django.utils.translation import ugettext_lazy as _
+from watson import search as watson
 
 
 class ZinniaConfig(AppConfig):
@@ -24,3 +25,5 @@ class ZinniaConfig(AppConfig):
         # Connect the signals
         connect_entry_signals()
         connect_discussion_signals()
+
+        watson.register(entry_klass)

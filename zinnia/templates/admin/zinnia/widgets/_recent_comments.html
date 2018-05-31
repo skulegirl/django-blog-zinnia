@@ -1,11 +1,12 @@
 {% load i18n %}
 {% load zinnia %}
+{% load avatar_tags %}
 
 {% for comment in comments %}
 <tr>
   <th>
-    <img src="{% get_gravatar comment.email 40 "G" %}"
-         class="gravatar photo" alt="{{ comment.name }}" />
+    <img src="{% avatar_url comment.user 40 %}"
+         class="gravatar photo" alt="{{ comment.user.username }}" />
   </th>
   <td>
     {% with entry=comment.content_object %}

@@ -1,5 +1,6 @@
 {% extends "zinnia/base.html" %}
 {% load i18n zinnia comments %}
+{% load avatar_tags %}
 
 {% block title %}{% trans "Comment preview" %}{% endblock title %}
 
@@ -13,10 +14,10 @@
   <ol id="comment-list">
     {% with comment=form.get_comment_object %}
     <li id="comment-preview" class="comment vcard box1">
-      <img src="{% get_gravatar comment.email 60 "G" %}"
-           class="gravatar photo" alt="{{ comment.name }}" />
+      <img src="{% avatar_url user 60 %}"
+           class="gravatar photo" alt="{{ user.username }}" />
       <p class="comment-info">
-        {% blocktrans with comment_url=comment.url|default:"#" comment_name=comment.name comment_human_date=comment.submit_date|date:"SHORT_DATETIME_FORMAT" comment_technical_date=comment.submit_date|date:"c" trimmed %}
+        {% blocktrans with comment_url=comment.url|default:"#" comment_name=user.username comment_human_date=comment.submit_date|date:"SHORT_DATETIME_FORMAT" comment_technical_date=comment.submit_date|date:"c" trimmed %}
         <a href="{{ comment_url }}" rel="external nofollow"
            class="fn url">{{ comment_name }}</a>
         on

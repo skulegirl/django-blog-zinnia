@@ -1,6 +1,4 @@
-{% load i18n %}{% trans "Author" %}: {{ comment.name }} {{ comment.url }}
-{% trans "Email" %}: {{ comment.email }}
-{% trans "IP" %}: {{ comment.ip_address }}
+{% load i18n %}{% trans "Author" %}: {{ comment.user.username }} {{ comment.url }}
 
 {% trans "Comment" %}:
 {{ comment.comment }}
