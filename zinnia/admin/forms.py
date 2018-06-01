@@ -4,6 +4,7 @@ from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from django.utils.translation import ugettext_lazy as _
 
 from mptt.forms import TreeNodeChoiceField
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from zinnia.admin.fields import MPTTModelMultipleChoiceField
 from zinnia.admin.widgets import MPTTFilteredSelectMultiple
@@ -57,6 +58,7 @@ class EntryAdminForm(forms.ModelForm):
         label=_('Categories'), required=False,
         queryset=Category.objects.all(),
         widget=MPTTFilteredSelectMultiple(_('categories')))
+    content = forms.CharField(widget=CKEditorUploadingWidget())
 
     def __init__(self, *args, **kwargs):
         super(EntryAdminForm, self).__init__(*args, **kwargs)
