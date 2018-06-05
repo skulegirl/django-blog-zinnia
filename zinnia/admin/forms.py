@@ -59,6 +59,7 @@ class EntryAdminForm(forms.ModelForm):
         queryset=Category.objects.all(),
         widget=MPTTFilteredSelectMultiple(_('categories')))
     content = forms.CharField(widget=CKEditorUploadingWidget())
+    prefix = 'entry'
 
     def __init__(self, *args, **kwargs):
         super(EntryAdminForm, self).__init__(*args, **kwargs)

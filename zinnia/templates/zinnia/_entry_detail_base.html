@@ -10,6 +10,11 @@
       </a>
     </h2>
     {% endblock entry-title %}
+    {% if request.user.is_staff %}
+    <h4>
+      <a href="{% url 'admin:zinnia_entry_change' object.pk %}">Edit this Entry</a>
+    </h4>
+    {% endif %}
     {% block entry-info %}
     <p class="entry-info">
       {% block entry-authors %}
