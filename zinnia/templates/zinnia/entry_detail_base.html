@@ -5,6 +5,7 @@
 {% load comments %}
 
 {% block title %}{{ object.title }}{% endblock title %}
+{% block head_title %}{{ object.title }}{% endblock head_title %}
 
 {% block meta-description %}{{ object.excerpt|safe }}{% endblock meta-description %}
 
@@ -151,7 +152,11 @@
 {% block entry-comments-form %}
 {% if object.comments_are_open %}
   {% if user.is_authenticated %}
+    {% if not user.emailaddress_set.first.verified %}
+    You must <a href="{% url 'account-details' %}#emailaddresses">verify your email address</a> before you can comment.
+    {% else %}
     {% render_comment_form for object %}
+    {% endif %}
   {% else %}
     You must <a href="{% url 'bdw-login' %}?next={{ request.get_full_path }}">log in</a> to comment.
   {% endif %}
