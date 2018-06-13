@@ -20,7 +20,7 @@
       {% block entry-authors %}
       {% with authors=object.authors.all %}
       {% if authors|length %}
-      {% trans "Written by" %}
+      {% trans "Posted by" %}
       {% for author in authors %}
       <span class="vcard author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <a href="{{ author.get_absolute_url }}" class="fn url nickname" rel="author"
@@ -28,7 +28,7 @@
       {% endfor %}
       {% trans "on" context "on date" %}
       {% else %}
-      {% trans "Written on" context "on date" %}
+      {% trans "Posted on" context "on date" %}
       {% endif %}
       {% endwith %}
       {% endblock entry-authors %}
