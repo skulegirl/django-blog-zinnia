@@ -1,7 +1,7 @@
 version: "1"
     rules:
       - base: bdw-dev
-        upstream: master
+        upstream: develop
         mergeMethod: merge
         assignees:
           - skulegirl
