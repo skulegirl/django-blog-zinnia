@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.urls import NoReverseMatch
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from zinnia.admin.forms import CategoryAdminForm
 
@@ -14,6 +14,7 @@ class CategoryAdmin(admin.ModelAdmin):
     form = CategoryAdminForm
     fields = ('title', 'parent', 'description', 'slug')
     list_display = ('title', 'slug', 'get_tree_path', 'description')
+    sortable_by = ('title', 'slug')
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ('title', 'description')
     list_filter = ('parent',)

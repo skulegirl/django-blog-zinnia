@@ -10,8 +10,8 @@ from django.utils import timezone
 from django.utils.html import conditional_escape
 from django.utils.html import format_html
 from django.utils.html import format_html_join
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 
 from zinnia import settings
 from zinnia.admin.filters import AuthorListFilter
@@ -59,6 +59,7 @@ class EntryAdmin(admin.ModelAdmin):
     list_display = ('get_title', 'get_authors', 'get_categories',
                     'get_tags', 'get_sites', 'get_is_visible', 'featured',
                     'get_short_url', 'publication_date')
+    sortable_by = ('publication_date', 'featured')
     radio_fields = {'content_template': admin.VERTICAL,
                     'detail_template': admin.VERTICAL}
     filter_horizontal = ('categories', 'authors', 'related')
@@ -86,7 +87,7 @@ class EntryAdmin(admin.ModelAdmin):
                              entry.pingback_count +
                              entry.trackback_count)
         if reaction_count:
-            return ungettext_lazy(
+            return ngettext_lazy(
                 '%(title)s (%(reactions)i reaction)',
                 '%(title)s (%(reactions)i reactions)', reaction_count) % \
                 {'title': title,

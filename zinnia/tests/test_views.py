@@ -8,7 +8,7 @@ from django.contrib.sites.models import Site
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 import django_comments as comments
 
@@ -348,7 +348,7 @@ class ViewsTestCase(ViewsBaseCase):
         self.assertEqual(response.status_code, 404)
         entry.status = PUBLISHED
 
-        entry.start_publication = datetime(2020, 1, 1, 12, 0)
+        entry.start_publication = datetime(2030, 1, 1, 12, 0)
         entry.save()
         with self.assertNumQueries(2):
             response = self.client.get(entry.get_absolute_url())
