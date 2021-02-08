@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.text import Truncator
 from django.utils.translation import gettext_lazy as _
+from sorl.thumbnail import get_thumbnail
 
 import django_comments as comments
 from django_comments.models import CommentFlag
@@ -432,6 +433,23 @@ class ImageEntry(models.Model):
     class Meta:
         abstract = True
 
+    @property
+    def search_thumbnail(self):
+        size = '200x134'
+        if self.image:
+            try:
+                im = get_thumbnail(self.image.file, size, crop='center', quality=99)
+                return im.url
+            except FileNotFoundError:
+                pass
+        watermark_url = 'default/BDW_watermark.png'
+        im = get_thumbnail(
+            watermark_url,
+            size,
+            crop='center',
+            quality=99
+        )
+        return im.url
 
 class FeaturedEntry(models.Model):
     """
