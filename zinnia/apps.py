@@ -2,12 +2,14 @@
 from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 from watson import search as watson
-from html2text import html2text
+import html2text
 
 
 class ZinniaEntrySearchAdapter(watson.SearchAdapter):
     def get_description(self, obj):
-        return html2text.html2text(obj.html_preview())
+        h = html2text.HTML2Text()
+        h.body_width = 0
+        return h.handle(obj.html_preview.preview)
 
 
 class ZinniaConfig(AppConfig):
